@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"path": "..\\.."
+	},
+	{
+		"path": "C:\\Users\\Admin\\Downloads\\ogani-master"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "ogani-master"
+  }
+}
