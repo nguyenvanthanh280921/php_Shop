@@ -9,12 +9,11 @@
 </head>
 <?php 
     session_start();
-    require('../functions.php');
-    if(isset($_SESSION['user_login']) && $_SESSION['user_login'] === true){
-        header("Location: $baseUrl/dashboard");
-    }
-    $cookieTime = time() + 30000;
     
+    if(isset($_SESSION['user_login']) && $_SESSION['user_login'] === true){
+        header("Location: /Project_shop/frontend/home.php");
+    }
+    $cookieTime = time() + 3000;
     if(isset($_POST['submit'])){
         $userName = $_POST['user_name'] ?? '';
         $userPassword = $_POST['user_password'] ?? '';
@@ -31,7 +30,7 @@
                     setcookie("user_password","");
                     setcookie("name","");
                 }
-                header("Location: $baseUrl/dashboard");
+                header("Location: /Project_shop/frontend/home.php");
             }else{
                 $error = "Incorrect Username or Password";
             }
@@ -79,7 +78,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-xl-5 col-md-8">
-              <form class="bg-white  rounded-5 shadow-5-strong p-5" action="./login.php" method="post">
+              <form class="bg-white  rounded-5 shadow-5-strong p-5" action="login.php" method="post">
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Name</label>
                     <input type="text" name="user_name" value="Thanhnv" id="form1Example1" class="form-control" />
@@ -93,7 +92,7 @@
                   <div class="col d-flex justify-content-center">
                     <!-- Checkbox -->
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="1" id="form1Example3" name="remember" />
+                      <input class="form-check-input" type="checkbox" value="" id="form1Example3" checked />
                       <label class="form-check-label" for="form1Example3">
                         Remember me
                       </label>
