@@ -1,9 +1,15 @@
 <?php
   include '../layout/header.php';
    require_once("../connection.php");
-   $query = "select * from tbl_product";
-   $result = mysqli_query($con,$query);
-   
+   $query = "SELECT * FROM tbl_product left join tbl_category on tbl_product.id_category = tbl_category.id_category";
+   $result = mysqli_query($con,$query); 
+
+  // $item_per_page = !empty($_GET['per_page']) ?$_GET['per_page']:4;
+  // $current_page = !empty($_GET['page']) ?$_GET['page']:4;
+  // $offset = ($current_page - 1) * $item_per_page;
+  // $
+
+
 ?>
 <div class="row">
   <div class="col">
@@ -20,6 +26,7 @@
               <th scope="col" class="border-0">Full Name </th>
               <th scope="col" class="border-0">Price</th>
               <th scope="col" class="border-0">Images</th>
+              <th scope="col" class="border-0">Category</th>
               <th scope="col" class="border-0">Action</th>
             </tr>
           <!-- </thead>
@@ -30,12 +37,14 @@
                   $productName = $row['product_name'];
                   $price = $row['price'];
                   $images = $row['image'];
+                  $categoryName = $row['category_name'];
                   ?>
                   <tr>
                     <td><?php echo $productId?></td>
                     <td><?php echo $productName?></td>
-                    <td><?php echo $price?></td>
-                    <td><?php echo $images?></td>
+                    <td><?php echo $price?></td>    
+                    <td><img width="100" height="100" src="<?php echo "./images/".$images?>" alt=""></td>
+                    <td><?php echo $categoryName?></td>
                     <td>                             
                       <a href="edit.php?getId=<?php echo $productId ?>" type="button" class="btn btn-warning">Edit</a>
                       <a href="delete.php?Del=<?php echo $productId ?>" type="button" class="btn btn-danger">Delete</a>         
@@ -46,6 +55,15 @@
                   ?>
           <!-- </tbody> -->
         </table>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

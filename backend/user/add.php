@@ -7,7 +7,7 @@
             echo 'Please Fill in the Blank';
         }else{
             $userName = $_POST['user_name'];
-            $userPassword = $_POST['user_password'];
+            $userPassword = md5($_POST['user_password']);
             $userEmail = $_POST['email'];
             $query = "insert into tbl_users (user_name, user_password, email) values('$userName','$userPassword','$userEmail')";
             $result = mysqli_query($con,$query);

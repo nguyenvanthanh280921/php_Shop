@@ -10,20 +10,25 @@
 <?php 
     session_start();
     require('../functions.php');
+    require('../connection.php');
     if(isset($_SESSION['user_login']) && $_SESSION['user_login'] === true){
         header("Location: $baseUrl/dashboard");
     }
-    $cookieTime = time() + 30000;
+    $cookieTime = time() + 30 * 24 * 60 * 60; 
     
     if(isset($_POST['submit'])){
-        $userName = $_POST['user_name'] ?? '';
+        $username = $_POST['user_name'] ?? '';
         $userPassword = $_POST['user_password'] ?? '';
-        if(!empty($userName) && !empty($userPassword)){
-            if($userName === 'Thanhnv' && $userPassword === 'thanhnv2001'){
+        if(!empty($username) && !empty($userPassword)){
+          $userPassword = md5($userPassword);
+          $sql = " SELECT * FROM tbl_users WHERE user_name = '$username' and user_password='$userPassword'";
+          $result =  mysqli_query($con,$sql);
+            if($result->num_rows){
+              
+                $_SESSION['userinfo'] = mysqli_fetch_assoc($result);
                 $_SESSION['user_login'] = true;
-                $_SESSION['name'] = "ThanhNV";
                 if(!empty($_POST["remember"])){
-                    setcookie ("user_name",$userName,$cookieTime);
+                    setcookie ("user_name",$username,$cookieTime);
                     setcookie ("user_pasword",$userPassword,$cookieTime);
                     setcookie ("name","ThanhNV",$cookieTime);
                 }else{
@@ -82,11 +87,11 @@
               <form class="bg-white  rounded-5 shadow-5-strong p-5" action="./login.php" method="post">
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Name</label>
-                    <input type="text" name="user_name" value="Thanhnv" id="form1Example1" class="form-control" />
+                    <input type="text" name="user_name" value="thanhnv" id="form1Example1" class="form-control" />
                 </div>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example2">Password</label>
-                    <input type="password" name="user_password" value="thanhnv2001" id="form1Example2" class="form-control" />                
+                    <input type="password" name="user_password" value="1234567" id="form1Example2" class="form-control" />                
                 </div>
                 <!-- 2 column grid layout for inline styling -->
                 <div class="row mb-4">

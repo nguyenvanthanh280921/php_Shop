@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shop-Football</title>
 </head>
 <body>
     <!-- Humberger End -->
@@ -21,9 +21,10 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="./home.php">Home</a></li>
-                            <li><a href="./product.php">Shop</a></li>                          
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            <li><a href="./product.php">Shop</a></li>  
+                            <li><a href="./detail.php">Details</a></li>                        
+                            <li><a href="./blog.php">Blog</a></li>
+                            <li><a href="./contact.php">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -53,7 +54,7 @@
                         </div>
                         <ul>
                             <li><a href="#">Fresh Meat</a></li>
-                            <li><a href="#">Vegetables</a></li>
+                            <li><a href="#">Vegetables</a></li> 
                             <li><a href="#">Fruit & Nut Gifts</a></li>
                             <li><a href="#">Fresh Berries</a></li>
                             <li><a href="#">Ocean Foods</a></li>

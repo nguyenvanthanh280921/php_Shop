@@ -14,7 +14,7 @@
       </div>
       <div class="card-body p-0 pb-3 text-center">
         <table class="table mb-0">
-          <!-- <thead class="bg-light"> -->
+          <!-- <thead class="bg-light"> --> 
             <tr>
               <th scope="col" class="border-0">#</th>
               <th scope="col" class="border-0">Name Category </th>
@@ -34,11 +34,11 @@
                   <tr>
                     <td><?php echo $categoryId?></td>
                     <td><?php echo $categoryName?></td>
-                    <td><?php echo $categoryImage?></td>
+                    <td><img width="100" height="100" src="<?php echo "./images/".$categoryImage?>" alt=""></td>
                     <td><?php echo $dateCreate?></td>
                     <td>                             
                       <a href="edit.php?getId=<?php echo $categoryId ?>" type="button" class="btn btn-warning">Edit</a>
-                      <a herf="delete.php?Del=<?php echo $categoryId ?>" type="button" class="btn btn-danger">Delete</a>          
+                      <a href="delete.php?Del=<?php echo $categoryId ?>" type="button" class="btn btn-danger">Delete</a>         
                       </td>
                   </tr>
                   <?php 

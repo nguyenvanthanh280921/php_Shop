@@ -12,13 +12,12 @@
         <h6 class="m-0">Users</h6>
         <a style="float:right" type="button" class="btn btn-success" href="<?php echo $baseUrl;?>/user/add.php">Add</a>  
       </div>
-      <div class="card-body p-0 pb-3 text-center">
+      <div class="card-body p-0 pb-3">
         <table class="table mb-0">
           <!-- <thead class="bg-light"> -->
             <tr>
               <th scope="col" class="border-0">#</th>
               <th scope="col" class="border-0">Users Name </th>
-              <th scope="col" class="border-0">Password</th>
               <th scope="col" class="border-0">Email</th>
               <th scope="col" class="border-0">Action</th>
             </tr>
@@ -28,13 +27,11 @@
                 while($row=mysqli_fetch_assoc($result)){
                     $userId = $row['id_user'];
                     $userName = $row['user_name'];
-                    $userPassword = $row['user_password'];
                     $userEmail = $row['email'];
                   ?>
                   <tr>
-                    <td><?php echo $userId?></td>
+                    <td class="text-center"><?php echo $userId?></td>
                     <td><?php echo $userName?></td>
-                    <td><?php echo $userPassword?></td>
                     <td><?php echo $userEmail?></td>
                     <td>                             
                       <a href="edit.php?getId=<?php echo $userId ?>" type="button" class="btn btn-warning">Edit</a>

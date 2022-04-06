@@ -39,7 +39,7 @@
                     <div class="breadcrumb__text">
                         <h2>Contact Us</h2>
                         <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
+                            <a href="./home.php">Home</a>
                             <span>Contact Us</span>
                         </div>
                     </div>

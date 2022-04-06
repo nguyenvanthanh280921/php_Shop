@@ -2,13 +2,17 @@
     include '../layout/header.php';
     require_once("../connection.php");
     if(isset($_POST['submit'])){
-        if(empty($_POST['category_name']) || empty($_POST['category_image']) || empty($_POST['date_create'])){
+        if(empty($_POST['category_name']) || empty($_POST['date_create'])){
             echo 'Please Fill in the Blank';
         }else{
             $categoryName = $_POST['category_name'];
-            $categoryImage = $_POST['category_image'];
             $dateCrate = $_POST['date_create'];
-            $query = "insert into tbl_category (category_name, category_image, date_create) values('$categoryName','$categoryImage','$dateCrate')";
+            $categoryImage = 'no_image.jpg';
+            if($_FILES['image']['size'] > 0) {
+                $categoryImage = basename($_FILES['image']['name']);
+                move_uploaded_file($_FILES['image']['tmp_name'],'images/'.$categoryImage);
+            }
+            $query = "insert into tbl_category (category_name, date_create, category_image) values('$categoryName','$dateCrate','$categoryImage')";
             $result = mysqli_query($con,$query);
             if($result){
                 header("Location: index.php");
@@ -17,21 +21,20 @@
             }
         }
     }
-    
 ?>
 <div class="container">
-    <form action="" method="POST">
+    <form action="add.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="exampleInputEmail1">Category Name</label>
             <input type="text" name="category_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name">
         </div>
-        <div class="form-group ">
-            <label for="exampleInputPassword1" class="form-label">Images</label>
-            <input class="form-control" name="category_image" type="text" id="formFile">
-            </div>
         <div class="form-group">
             <label for="exampleInputPassword1">Date_Create</label>
             <input type="text" name="date_create" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Imgaes</label>
+            <input type="file" name="image" class="form-control" id="exampleInputPassword1">
         </div>
         <button name="submit" type="submit" class="btn btn-primary">Address</button>
     </form>

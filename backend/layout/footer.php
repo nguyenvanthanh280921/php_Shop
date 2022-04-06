@@ -13,4 +13,9 @@
     <script src="<?php echo $baseUrl; ?>/assets/scripts/extras.1.1.0.min.js"></script>
     <script src="<?php echo $baseUrl; ?>/assets/scripts/shards-dashboards.1.1.0.min.js"></script>
     <script src="<?php echo $baseUrl; ?>/assets/scripts/app/app-blog-overview.1.1.0.js"></script>
+    <style>
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
+</style>
 </html>

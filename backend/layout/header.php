@@ -20,6 +20,7 @@ ob_start();
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="<?php echo $baseUrl; ?>/assets/styles/shards-dashboards.1.1.0.min.css">
     <link rel="stylesheet" href="<?php echo $baseUrl; ?>/assets/styles/extras.1.1.0.min.css">
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.3.1/classic/ckeditor.js"></script>
     <title>Header</title>
 </head>
 
@@ -96,12 +97,14 @@ ob_start();
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <!-- <img class="user-avatar rounded-circle mr-2" src="images/avatars/1.jpg" alt="User Avatar"> -->
-                    <span class="d-none d-md-inline-block">Sierra Brooks</span>
+                    <span class="d-none d-md-inline-block">
+                      <?php echo $_SESSION['userinfo']['user_fullname'] ?? 'anonymous'; ?>
+                    </span>
                     
                   </a>
                   <div class="dropdown-menu dropdown-menu-small">
-                    <a class="dropdown-item" href="user-profile-lite.html">
-                      <i class="material-icons">&#xE7FD;</i> Profile</a>
+                    <a class="dropdown-item" href="<?php echo $_SESSION['userinfo']['user'] ?? 'id_user'; ?>">
+                      <i class="material-icons"></i> Profile</a>
                     <a class="dropdown-item text-danger" href="<?php echo $baseUrl; ?>/admin/logout.php">
                       <i class="material-icons text-danger">&#xE879;</i> LogOut </a>
                   </div>
