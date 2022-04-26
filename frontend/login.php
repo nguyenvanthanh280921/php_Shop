@@ -43,7 +43,6 @@
         }else{
             $error = "Please insert your infomation";
         }
-
     }
 ?>
 <body>

@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./home.php"><img src="img/logo.png" alt=""></a>
+                        <a href="./home.php"><img src="img/logo4.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -29,8 +29,7 @@
                     <div class="header__cart">
                         <ul>                         
                             <li><a href=""><i class="fa fa-user"></i></a></li>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="cart.php"><i class="fa fa-shopping-bag"></i> <span></span></a></li>
                         </ul>
                     </div>
                 </div>

@@ -1,6 +1,7 @@
 <?php
     include '../layout/header.php';
     require_once("../connection.php");
+    require_once("../constant.php");
     $query = "SELECT * FROM tbl_category";
     $catalogs = $con->query($query);
     if(isset($_POST['submit'])){
@@ -11,22 +12,14 @@
             $price = $_POST['price'] ?? '';
             $categoryId = $_POST['id_category'] ?? '';
             $productDetail = $_POST['product_detail'] ?? '';
+            $productSize = $_POST['product_size'] ?? '';
+            $productColor = $_POST['product_color'] ?? '';
             $images = 'no_image.jpg';
             if($_FILES['image']['size'] > 0) {
                 $images = basename($_FILES['image']['name']);
                 move_uploaded_file($_FILES['image']['tmp_name'],'images/'.$images);
             }
-            // $filename = $images['name'];
-            // $filetmp = $images['tmp_name'];
-            // $fileerror = $images['error'];
-            // $fileext = explode('.',$filename);
-            // $filecheck = strtolower(end($fileext));
-            // $fileextstored = array('png','jpg','jpeg');
-            // if(in_array($filecheck, $fileextstored)){
-            //     $destinationfile = 'images/'.$filename;
-            //     move_uploaded_file($filetmp, $destinationfile);
-            // }  
-            $query = "insert into tbl_product (product_name, price, image, id_category,product_detail) values('$productName','$price','$images',$categoryId,'$productDetail')";
+            $query = "insert into tbl_product (product_name, price, image, id_category,product_detail,product_size,product_color ) values('$productName','$price','$images',$categoryId,'$productDetail','$productSize','$productColor')";
                 $result = mysqli_query($con,$query);
                 if($result){
                     header("Location: index.php");
@@ -38,30 +31,65 @@
 ?>
 <div class="container">
     <form action="add.php" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="exampleInputEmail1">Product Name</label>
-            <input type="text" name="product_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Price</label>
-            <input type="text" name="price" class="form-control" id="exampleInputPassword1" placeholder="50.000đ">
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Imgaes</label>
-            <input type="file" name="image" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="form-group">
-            <select name="id_category" class="form-control">
-                <option>Select Catalog</option>
-                <?php foreach($catalogs as $cat): ?>
-                <option value="<?php echo $cat['id_category']; ?>"><?php echo $cat['category_name']; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>  
+        <li class="list-group-item p-3">
+            <div class="row">
+                <div class="col-sm-12 col-md-8">
+                    <div class="form-group">
+                    <label for="exampleInputPassword1">PRODUCT NAME</label>
+                        <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="product_name" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">PRODUCT PRICE</label>
+                        <input type="text" class="form-control" name="price" id="inputPassword4" placeholder="$100" >
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Imgaes</label>
+                        <input type="file" name="image" class="form-control" id="exampleInputPassword1">
+                    </div>
+                
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <div class="form-group">       
+                        <label for="exampleInputPassword1">SELECT CATALOG</label>
+                        <select class="form-control" name="id_category">
+                            <option>Select Catalog</option>
+                            <?php foreach($catalogs as $cat): ?>
+                                <option value="<?php echo $cat['id_category']; ?>"><?php echo $cat['category_name']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">Please select your state.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">SELECT SIZE</label>
+                        <select class="form-control" name="product_size">
+                            <option>Select size</option>
+                            <?php foreach(PRODUCT_SIZE as $size): ?>
+                                <option value="<?php echo $size; ?>"><?php echo $size; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">Please select your state.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">SELECT COLOR</label>
+                        <select class="form-control" name="product_color">
+                            <option>Select color</option>
+                            <?php foreach(PRODUCT_COLOR as $color): ?>
+                                <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <div class="invalid-feedback">Please select your state.</div>
+                    </div>
+
+                   
+                </div>
+            </div>
+        </li>
         <textarea name="product_detail" id="ck_editor" cols="80" rows="5" class="ckeditor" ></textarea>
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
-</div
+</div>
 <?php include '../layout/footer.php' ?>
 <script type="text/javascript">
       let theEditor = "";

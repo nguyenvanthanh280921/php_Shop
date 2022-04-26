@@ -1,15 +1,16 @@
 <?php
   include '../layout/header.php';
    require_once("../connection.php");
-   $query = "SELECT * FROM tbl_product left join tbl_category on tbl_product.id_category = tbl_category.id_category";
-   $result = mysqli_query($con,$query); 
-
-  // $item_per_page = !empty($_GET['per_page']) ?$_GET['per_page']:4;
-  // $current_page = !empty($_GET['page']) ?$_GET['page']:4;
-  // $offset = ($current_page - 1) * $item_per_page;
-  // $
-
-
+  if(isset($_GET['page'])){
+    $page = $_GET['page'];
+  }else{
+    $page = 1;
+  }
+  $num_per_page = 3;
+  $start_from = ($page -1 ) * $num_per_page;
+   $query = "SELECT * FROM tbl_product left join tbl_category
+             on tbl_product.id_category = tbl_category.id_category ORDER BY id_product ASC LIMIT $start_from,$num_per_page";
+   $result = mysqli_query($con,$query);     
 ?>
 <div class="row">
   <div class="col">
@@ -38,6 +39,7 @@
                   $price = $row['price'];
                   $images = $row['image'];
                   $categoryName = $row['category_name'];
+                  
                   ?>
                   <tr>
                     <td><?php echo $productId?></td>
@@ -45,6 +47,7 @@
                     <td><?php echo $price?></td>    
                     <td><img width="100" height="100" src="<?php echo "./images/".$images?>" alt=""></td>
                     <td><?php echo $categoryName?></td>
+                
                     <td>                             
                       <a href="edit.php?getId=<?php echo $productId ?>" type="button" class="btn btn-warning">Edit</a>
                       <a href="delete.php?Del=<?php echo $productId ?>" type="button" class="btn btn-danger">Delete</a>         
@@ -55,15 +58,28 @@
                   ?>
           <!-- </tbody> -->
         </table>
-        <nav aria-label="Page navigation example">
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
-        </nav>
+        <?php
+          $pr_query = "SELECT * FROM tbl_product";
+          $query_num = mysqli_query($con,$pr_query);
+          $totalrecord = mysqli_num_rows($query_num);
+
+          $totalpage = ceil($totalrecord/$num_per_page);
+
+          if($page>1){
+            echo "<a href='index.php?page=".($page-1)."' class='btn btn-success'>Previous</a>";
+          }
+          for($i = 1; $i<=$totalpage;$i++){
+            if($i == $page){
+              echo '<a class="active btn btn-light">'.$i.'</a>';
+            }else{
+              echo "  <a href='index.php?page=".$i."' class=' btn btn-warning'>$i</a>";
+            }
+            
+          }
+          if($i > $page && $page != $totalpage){
+            echo "<a href='index.php?page=".($page+1)."' class='btn btn-success'>Next</a>";
+          }
+        ?>
       </div>
     </div>
   </div>

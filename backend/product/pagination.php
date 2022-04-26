@@ -1,44 +1,20 @@
-<html>
-<head>
-    <title>Pagination</title>
-    <!-- Bootstrap CDN -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <?php
+<?php
     require_once("../connection.php");
-        if (isset($_GET['pageno'])) {
-            $pageno = $_GET['pageno'];
-        } else {
-            $pageno = 1;
-        }
-        $no_of_records_per_page = 10;
-        $offset = ($pageno-1) * $no_of_records_per_page;
+    $result_per_pages = 10;
+    $sql = "SELECT * FROM tbl_product";
+    $result = mysqli_query($con,$sql);
+    $number_of_result = mysqli_fetch_array($result);
 
-        $total_pages_sql = "SELECT COUNT(*) FROM tbl_product";
-        $result = mysqli_query($con,$total_pages_sql);
 
-        $total_rows = mysqli_fetch_array($result)[0];
-        $total_pages = ceil($total_rows / $no_of_records_per_page);
+    while ($row = mysqli_fetch_array($result)){
+        echo $row['id_product'].''. $row['tbl_product']. '<br>';
+    }
 
-        $sql = "SELECT * FROM tbl_product LIMIT $offset, $no_of_records_per_page";
-        $res_data = mysqli_query($conn,$sql);
-        while($row = mysqli_fetch_array($res_data)){
-            //here goes the data
-        }
-        mysqli_close($conn);
-    ?>
-    <ul class="pagination">
-        <li><a href="?pageno=1">First</a></li>
-        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
-        </li>
-        <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-            <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
-        </li>
-        <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-    </ul>
-</body>
-</html>
+    $number_of_pages = ceil($number_of_result/$result_per_pages);
+
+
+    for($page=1;$page<=$number_of_pages;$page++){
+        echo '<a href="pagination.php?page='.$page.'">'.$page.'</a>';
+    }
+
+?>

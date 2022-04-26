@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>T-sport</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
     <!-- Header Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="img/hero/banner2.png">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -77,7 +77,7 @@
                             <div class="blog__sidebar__recent">
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-1.jpg" alt="">
+                                        <img src="img/blog/sidebar/1.png" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
                                         <h6>09 Kinds Of Vegetables<br /> Protect The Liver</h6>
@@ -86,7 +86,7 @@
                                 </a>
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-2.jpg" alt="">
+                                        <img src="img/blog/sidebar/2.png" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
                                         <h6>Tips You To Balance<br /> Nutrition Meal Day</h6>
@@ -95,7 +95,7 @@
                                 </a>
                                 <a href="#" class="blog__sidebar__recent__item">
                                     <div class="blog__sidebar__recent__item__pic">
-                                        <img src="img/blog/sidebar/sr-3.jpg" alt="">
+                                        <img src="img/blog/sidebar/3.png" alt="">
                                     </div>
                                     <div class="blog__sidebar__recent__item__text">
                                         <h6>4 Principles Help You Lose <br />Weight With Vegetables</h6>
@@ -107,12 +107,10 @@
                         <div class="blog__sidebar__item">
                             <h4>Search By</h4>
                             <div class="blog__sidebar__item__tags">
-                                <a href="#">Apple</a>
-                                <a href="#">Beauty</a>
-                                <a href="#">Vegetables</a>
-                                <a href="#">Fruit</a>
-                                <a href="#">Healthy Food</a>
-                                <a href="#">Lifestyle</a>
+                                <a href="#">NIKE</a>
+                                <a href="#">ADIDAS</a>
+                                <a href="#">MIZUNO</a>
+                                <a href="#">KAMITO</a>
                             </div>
                         </div>
                     </div>
@@ -122,7 +120,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="img/blog/blog-2.jpg" alt="">
+                                    <img src="img/blog/t1.png" alt="">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
@@ -139,7 +137,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="img/blog/blog-3.jpg" alt="">
+                                    <img src="img/blog/f.jpg" alt="">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
@@ -156,7 +154,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="img/blog/blog-1.jpg" alt="">
+                                    <img src="img/blog/t5.png" alt="">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
@@ -173,7 +171,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
+                                    <img src="img/blog/t6.png" alt="">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
@@ -190,7 +188,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="img/blog/blog-4.jpg" alt="">
+                                    <img src="img/blog/t7.png" alt="">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
@@ -207,7 +205,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="blog__item">
                                 <div class="blog__item__pic">
-                                    <img src="img/blog/blog-6.jpg" alt="">
+                                    <img src="img/blog/t2.png" alt="">
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>

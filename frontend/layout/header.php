@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop-Football</title>
+    <title>T-sport</title>
 </head>
 <body>
+    
     <!-- Humberger End -->
     <!-- Header Section Begin -->
     <header class="header">
@@ -14,15 +15,14 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./home.php"><img src="img/logo.png" alt=""></a>
+                        <a href="./home.php"><img src="img/logo4.png" alt="" ></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="./home.php">Home</a></li>
-                            <li><a href="./product.php">Shop</a></li>  
-                            <li><a href="./detail.php">Details</a></li>                        
+                            <li><a href="./product.php">Shop</a></li>                       
                             <li><a href="./blog.php">Blog</a></li>
                             <li><a href="./contact.php">Contact</a></li>
                         </ul>
@@ -31,7 +31,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>                         
-                            <li><a href="./login.php"><i class="fa fa-user"></i></a></li>
+                            <li><a href="../backend/admin/login.php"><i class="fa fa-user"></i></a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
@@ -82,18 +82,20 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>0355.249.737</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
                     </div>
                 </div>
     </section>
-                    <div class="hero__item set-bg" data-setbg="img/hero/banner.jpg">
+                    <div class="hero__item set-bg" data-setbg="img/hero/benner.jpg">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
+                            <span>
+                                CRISTIANO RONALDO
+                            </span>
+                            <h2 style="color:#fff">JUST DO IT <br />100%</h2>
+                            <p style="color:#bac5ca">The moment lasts a second. The legend lasts forever</p>
                             <a href="#" class="primary-btn">SHOP NOW</a>
                         </div>
                     </div>

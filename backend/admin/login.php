@@ -69,7 +69,7 @@
       <div class="container-fluid">
         <!-- Navbar brand -->
         <a class="navbar-brand nav-link" target="_blank" href="#">
-          <strong>OGANI</strong>
+          <strong>THÀNH SPORT</strong>
         </a>
         <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
           aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,13 +82,16 @@
     <div id="intro" class="bg-image shadow-2-strong">
       <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
         <div class="container">
+        
           <div class="row justify-content-center">
             <div class="col-xl-5 col-md-8">
               <form class="bg-white  rounded-5 shadow-5-strong p-5" action="./login.php" method="post">
+              <h1>Login</h1>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Name</label>
                     <input type="text" name="user_name" value="thanhnv" id="form1Example1" class="form-control" />
                 </div>
+               
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example2">Password</label>
                     <input type="password" name="user_password" value="1234567" id="form1Example2" class="form-control" />                
@@ -113,7 +116,7 @@
                 <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
                 <span class="error"><?php echo !empty($error) ? $error : ''; ?></span><br /><br />
                 <div class="text-center">
-                    <p>Not a member? <a href="#">Register</a></p>
+                    <p>Not a member? <a href="register.php">Register</a></p>
                 </div>
               </form>
             </div>

@@ -11,10 +11,30 @@
         $categoryImage = $row['category_image'] ?? '';
         $dateCreate = $row['date_create'] ?? '';
     }
-    
+    if(isset($_POST['update'])){
+        if(empty($_POST['category_name']) || empty($_POST['date_create'])){
+            echo 'Please Fill in the Blank';
+        }else{
+            $productName = $_POST['category_name'];
+            $price = $_POST['date_create'] ?? '';
+            $images = 'no_image.jpg';
+            if($_FILES['category_image']['size'] > 0) {
+                $images = basename($_FILES['category_image']['name']);
+                move_uploaded_file($_FILES['category_image']['tmp_name'],'images/'.$images);
+            }
+            $query= "update tbl_product set product_name='".$productName."', price='".$price."',category_image='".$categoryImage."',id_category='".$categoryId."', product_detail='$productDetail' where id_product='".$productId."'";
+            //var_dump($query);die; // query dau, query dau, query dau???? chem nhu dung roi!!!!!
+            $result = mysqli_query($con,$query);    
+                if($result){
+                    header("Location: index.php");
+                }else{
+                    header("Location: edit.php?getId=$categoryId");
+                }
+        }
+    }
 ?>
 <div class="container">
-    <form action="update.php?id_category=<?php echo $categoryId ?>" method="POST">
+    <form action="update.php?id_category=<?php echo $categoryId ?>" method="POST"enctype="multipart/form-data" >
         <div class="form-group">
             <label for="exampleInputEmail1">Category Name</label>
             <input type="text" name="category_name" value="<?php echo $categoryName ?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="name">
