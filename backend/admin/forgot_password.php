@@ -29,6 +29,7 @@
           $newPassword .= $seed[$k];
         } 
         $sql = "UPDATE tbl_users SET user_password = ? WHERE email = ?";
+        // var_dump($sql);die();
         $stmt = $conn->prepare($sql); //tạo một prepare stement     
         $stmt->execute([md5($newPassword), $email ]);
         $mailContent = "<p> You received this message, you or anyone else requested a new password!!!</p>

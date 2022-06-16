@@ -89,28 +89,6 @@
       };
     }
 
-    // Generate the small charts
-    boSmallStatsDatasets.map(function (el, index) {
-      var chartOptions = boSmallStatsOptions(Math.max.apply(Math, el.data) + 1);
-      var ctx = document.getElementsByClassName('blog-overview-stats-small-' + (index + 1));
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Label 1", "Label 2", "Label 3", "Label 4", "Label 5", "Label 6", "Label 7"],
-          datasets: [{
-            label: 'Today',
-            fill: 'start',
-            data: el.data,
-            backgroundColor: el.backgroundColor,
-            borderColor: el.borderColor,
-            borderWidth: 1.5,
-          }]
-        },
-        options: chartOptions
-      });
-    });
-
-
     //
     // Blog Overview Users
     //
@@ -203,21 +181,7 @@
       }
     };
 
-    // Generate the Analytics Overview chart.
-    window.BlogOverviewUsers = new Chart(bouCtx, {
-      type: 'LineWithLine',
-      data: bouData,
-      options: bouOptions
-    });
 
-    // Hide initially the first and last analytics overview chart points.
-    // They can still be triggered on hover.
-    var aocMeta = BlogOverviewUsers.getDatasetMeta(0);
-    aocMeta.data[0]._model.radius = 0;
-    aocMeta.data[bouData.datasets[0].data.length - 1]._model.radius = 0;
-
-    // Render the chart.
-    window.BlogOverviewUsers.render();
 
     //
     // Users by device pie chart
@@ -258,12 +222,6 @@
 
     var ubdCtx = document.getElementsByClassName('blog-users-by-device')[0];
 
-    // Generate the users by device chart.
-    window.ubdChart = new Chart(ubdCtx, {
-      type: 'pie',
-      data: ubdData,
-      options: ubdOptions
-    });
 
   });
 })(jQuery);

@@ -8,7 +8,6 @@ $baseUrl = sprintf(
     $_SERVER['SERVER_NAME'],
     $uris[1].'/'.$uris[2]
 );
-
 function sendMail($mailTo, $subject, $content){
     require "../../PHPMailer-master/src/PHPMailer.php"; 
     require "../../PHPMailer-master/src/SMTP.php"; 
@@ -42,9 +41,9 @@ function sendMail($mailTo, $subject, $content){
         }else{
             return false;
         }
-      } catch (Exception $e) {
+    } catch (Exception $e) {
         //$error = $e->getMessage();
         return false;
-      }
-      return true;
+    }
+    return true;
 }

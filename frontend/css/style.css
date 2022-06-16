@@ -251,7 +251,7 @@ ol {
 -----------------------*/
 
 .header__top {
-  background: #f5f5f5;
+  background: #F3F6FA;
 }
 
 .header__top__left {
@@ -366,7 +366,7 @@ ol {
 }
 
 .header__top__right__language ul {
-  background: #222222;
+  background: #888888;
   width: 100px;
   text-align: left;
   padding: 5px 0;
@@ -391,6 +391,9 @@ ol {
   font-size: 14px;
   color: #ffffff;
   padding: 5px 10px;
+}
+.header__top__right__language ul li a:hover{
+  color: #7FAD39;
 }
 
 .header__top__right__auth {
@@ -519,7 +522,7 @@ ol {
 
 .header__cart ul li a i {
   font-size: 18px;
-  color: #1c1c1c;
+  color: rgb(10, 10, 10);
 }
 
 .header__cart ul li a span {
@@ -830,6 +833,7 @@ ol {
   margin-right: 25px;
   position: relative;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .featured__controls ul li.active:after {
@@ -865,7 +869,6 @@ ol {
   overflow: hidden;
   background-position: center center;
 }
-
 .featured__item__pic__hover {
   position: absolute;
   left: 0;
@@ -883,6 +886,9 @@ ol {
   list-style: none;
   display: inline-block;
   margin-right: 6px;
+}
+.featured__item__pic:hover{
+
 }
 
 .featured__item__pic__hover li:last-child {
@@ -938,6 +944,9 @@ ol {
 
 .featured__item__text h6 a {
   color: #252525;
+}
+.featured__item__text h6 a:hover{
+  color: #7FAD39;
 }
 
 .featured__item__text h5 {
@@ -1002,6 +1011,9 @@ ol {
   width: 110px;
 }
 
+.latest-product__item__pic img:hover{
+  opacity: 0.3;
+}
 .latest-product__item__text {
   overflow: hidden;
   padding-top: 10px;
@@ -1237,10 +1249,13 @@ ol {
   margin-right: 16px;
   margin-bottom: 10px;
 }
+.sidebar__item__size :hover{
+  background-color: #84e67d;
+}
 
 .sidebar__item__size label {
   font-size: 12px;
-  color: #6f6f6f;
+  color: #0f0f0f;
   display: inline-block;
   padding: 8px 25px 6px;
   background: #f5f5f5;
@@ -1633,15 +1648,13 @@ ol {
 .product__pagination a,
 .blog__pagination a {
   display: inline-block;
-  width: 30px;
-  height: 30px;
   border: 1px solid #b2b2b2;
   font-size: 14px;
   color: #b2b2b2;
   font-weight: 700;
   line-height: 28px;
   text-align: center;
-  margin-right: 16px;
+  margin-right: 5px;
   -webkit-transition: all, 0.3s;
   -moz-transition: all, 0.3s;
   -ms-transition: all, 0.3s;
@@ -1676,7 +1689,6 @@ ol {
 .product__details__pic__item img {
   min-width: 100%;
 }
-
 .product__details__pic__slider img {
   cursor: pointer;
 }
@@ -2142,7 +2154,6 @@ ol {
   border: 1px solid #ebebeb;
   padding-left: 20px;
   font-size: 16px;
-  color: #b2b2b2;
   border-radius: 4px;
 }
 
@@ -3484,3 +3495,4 @@ ol {
     font-size: 24px;
   }
 }
+

@@ -4,7 +4,6 @@
         $userId = $_GET['Del'];
         $query = "delete from tbl_users where id_user='".$userId."'";
         $result = mysqli_query($con,$query);
-
         if($result){
             header("Location: index.php");
         }else{

@@ -20,23 +20,26 @@
         $username = $_POST['user_name'] ?? '';
         $userPassword = $_POST['user_password'] ?? '';
         if(!empty($username) && !empty($userPassword)){
-          $userPassword = md5($userPassword);
-          $sql = " SELECT * FROM tbl_users WHERE user_name = '$username' and user_password='$userPassword'";
+          $sql = " SELECT * FROM tbl_users WHERE user_name = '$username'";
           $result =  mysqli_query($con,$sql);
             if($result->num_rows){
-              
-                $_SESSION['userinfo'] = mysqli_fetch_assoc($result);
-                $_SESSION['user_login'] = true;
-                if(!empty($_POST["remember"])){
-                    setcookie ("user_name",$username,$cookieTime);
-                    setcookie ("user_pasword",$userPassword,$cookieTime);
-                    setcookie ("name","ThanhNV",$cookieTime);
+                $userInfo = mysqli_fetch_assoc($result);
+                if(password_verify($userPassword, $userInfo['user_password'])){
+                    $_SESSION['user_login'] = true;
+                    $_SESSION['userinfo'] = $userInfo;
+                    if(!empty($_POST["remember"])){
+                        setcookie ("user_name",$username,$cookieTime);
+                        setcookie ("user_pasword",$userPassword,$cookieTime);
+                        setcookie ("name","ThanhNV",$cookieTime);
+                    }else{
+                        setcookie("user_name","");
+                        setcookie("user_password","");
+                        setcookie("name","");
+                    }
+                    header("Location: $baseUrl/dashboard");
                 }else{
-                    setcookie("user_name","");
-                    setcookie("user_password","");
-                    setcookie("name","");
+                    $error = "Incorrect Username or Password";
                 }
-                header("Location: $baseUrl/dashboard");
             }else{
                 $error = "Incorrect Username or Password";
             }
@@ -82,19 +85,18 @@
     <div id="intro" class="bg-image shadow-2-strong">
       <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
         <div class="container">
-        
           <div class="row justify-content-center">
             <div class="col-xl-5 col-md-8">
               <form class="bg-white  rounded-5 shadow-5-strong p-5" action="./login.php" method="post">
               <h1>Login</h1>
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example1">Name</label>
-                    <input type="text" name="user_name" value="thanhnv" id="form1Example1" class="form-control" />
+                    <input type="text" name="user_name"  id="form1Example1" class="form-control" />
                 </div>
                
                 <div class="form-outline mb-4">
                     <label class="form-label" for="form1Example2">Password</label>
-                    <input type="password" name="user_password" value="1234567" id="form1Example2" class="form-control" />                
+                    <input type="password" name="user_password"  id="form1Example2" class="form-control" />
                 </div>
                 <!-- 2 column grid layout for inline styling -->
                 <div class="row mb-4">
@@ -108,16 +110,13 @@
                     </div>
                   </div>
                   <div class="col text-center">
-                    <!-- Simple link -->
-                    <a href="forgot_password.php">Forgot password?</a>
-                  </div>
+                        <!-- Simple link -->
+                        <a href="forgot_password.php">Forgot password?</a>
+                    </div>
                 </div>
                 <!-- Submit button -->
                 <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
                 <span class="error"><?php echo !empty($error) ? $error : ''; ?></span><br /><br />
-                <div class="text-center">
-                    <p>Not a member? <a href="register.php">Register</a></p>
-                </div>
               </form>
             </div>
           </div>

@@ -1,137 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<?php 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Sign Up Form by Colorlib</title>
+        <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+        <!-- Main css -->
+        <link rel="stylesheet" href="css/css.css">
+    </head>
+<body>
+<?php
+   include "../backend/connection.php";
     session_start();
-    require('../backend/functions.php');
-    require('../backend/connection.php');
-    if(isset($_SESSION['user_login']) && $_SESSION['user_login'] === true){
-        header("Location: $baseUrl/dashboard");
-    }
-    $cookieTime = time() + 30 * 24 * 60 * 60; 
-    
     if(isset($_POST['submit'])){
-        $username = $_POST['user_name'] ?? '';
-        $userPassword = $_POST['user_password'] ?? '';
-        if(!empty($username) && !empty($userPassword)){
-          $userPassword = md5($userPassword);
-          $sql = " SELECT * FROM tbl_users WHERE user_name = '$username' and user_password='$userPassword'";
-          $result =  mysqli_query($con,$sql);
-            if($result->num_rows){
-              
-                $_SESSION['userinfo'] = mysqli_fetch_assoc($result);
-                $_SESSION['user_login'] = true;
-                if(!empty($_POST["remember"])){
-                    setcookie ("user_name",$username,$cookieTime);
-                    setcookie ("user_pasword",$userPassword,$cookieTime);
-                    setcookie ("name","ThanhNV",$cookieTime);
-                }else{
-                    setcookie("user_name","");
-                    setcookie("user_password","");
-                    setcookie("name","");
-                }
-                header("Location: $baseUrl/dashboard");
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $sql = mysqli_query($con,"SELECT * FROM tbl_users WHERE email='$email'") ;
+        $data = mysqli_fetch_assoc($sql);
+        $checkEmail = mysqli_num_rows($sql);
+        if($checkEmail == 1){
+            $checkPass = password_verify($password, $data['user_password']);
+            if($checkPass){
+
+                $_SESSION['user'] = $data;
+                header('location: index.php');
             }else{
-                $error = "Incorrect Username or Password";
+                echo "The password entered is incorrect";
             }
         }else{
-            $error = "Please insert your infomation";
+            echo "The email you entered does not exist";
         }
     }
 ?>
-<body>
-      <!--Main Navigation-->
-  <header>
-    <style>
-      #intro {
-        background-image: url(https://mdbootstrap.com/img/new/fluid/city/008.jpg);
-        height: 100vh;
-      }
-      /* Height for devices larger than 576px */
-      @media (min-width: 992px) {
-        #intro {
-          margin-top: -58.59px;
-        }
-      }
-      .navbar .nav-link {
-        color: #fff !important;
-      }
-    </style>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark d-none d-lg-block" style="z-index: 2000;">
-      <div class="container-fluid">
-        <!-- Navbar brand -->
-        <a class="navbar-brand nav-link" target="_blank" href="#">
-          <strong>OGANI</strong>
-        </a>
-        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
-          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </nav>
-    <!-- Navbar -->
-    <!-- Background image -->
-    <div id="intro" class="bg-image shadow-2-strong">
-      <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+    <!-- Sing in  Form -->
+    <section class="sign-in">
         <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-xl-5 col-md-8">
-              <form class="bg-white  rounded-5 shadow-5-strong p-5" action="./login.php" method="post">
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="form1Example1">Name</label>
-                    <input type="text" name="user_name" value="thanhnv" id="form1Example1" class="form-control" />
+           <a href="index.php"> <svg style="padding: 20px" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+            </svg>
+           </a>
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="img/ronanldo.png" alt="sing up image"></figure>
+                    <a href="register.php" class="signup-image-link">Create an account</a>
                 </div>
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="form1Example2">Password</label>
-                    <input type="password" name="user_password" value="1234567" id="form1Example2" class="form-control" />                
-                </div>
-                <!-- 2 column grid layout for inline styling -->
-                <div class="row mb-4">
-                  <div class="col d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="1" id="form1Example3" name="remember" />
-                      <label class="form-check-label" for="form1Example3">
-                        Remember me
-                      </label>
+                <div class="signin-form">
+                    <h2 class="form-title">Sign In</h2>
+                    <form method="POST" class="register-form" id="login-form" action="./login.php">
+                        <div class="form-group">
+                        <label for="email"><i class="zmdi zmdi-email"></i></label>
+                            <input type="email" name="email" id="email" placeholder="Your Email"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="password" id="your_pass" placeholder="Password"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                            <div class="col text-right">
+                                <a href="forgot-password.php">Forgot password?</a>
+                            </div>
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="submit" id="signin" class="form-submit" value="Log in"/>
+                        </div>
+                    </form>
+                    <div class="social-login">
+                        <span class="social-label">Or login with</span>
+                        <ul class="socials">
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-facebook"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-twitter"></i></a></li>
+                            <li><a href="#"><i class="display-flex-center zmdi zmdi-google"></i></a></li>
+                        </ul>
                     </div>
-                  </div>
-                  <div class="col text-center">
-                    <!-- Simple link -->
-                    <a href="forgot_password.php">Forgot password?</a>
-                  </div>
                 </div>
-                <!-- Submit button -->
-                <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-                <span class="error"><?php echo !empty($error) ? $error : ''; ?></span><br /><br />
-                <div class="text-center">
-                    <p>Not a member? <a href="#">Register</a></p>
-                </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-    <!-- Background image -->
-  </header>
-  <!--Footer-->
-  <footer class="bg-light text-lg-start">
-    <!-- <hr class="m-0" /> -->
-    <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-      © 2022 Copyright:
-      <a href="">nguyenvanthanh280921@gmail.com</a>
-    </div>
-    <!-- Copyright -->
-  </footer>
-  <!--Footer-->
+    </section>
+    <script src="vendor/jquery/jquery.min.js"></script>
 </body>
 </html>

@@ -5,14 +5,12 @@
     $userId = $_GET['getId'];
     $query = "select * from tbl_users where id_user='".$userId."'";
     $result = mysqli_query($con,$query);
-
     while($row=mysqli_fetch_assoc($result)){
         $userId = $row['id_user'];
         $userName = $row['user_name'];
         $userPassword = "xxxxxxxxxx";
         $userEmail = $row['email'];
     }
-
     // update user info
     if(isset($_POST['update'])){
         $userId = $_GET['id_user'];
@@ -20,7 +18,7 @@
         $userEmail = $_POST['email'];
         $userFullName = $_POST['user_fullname'];
         if(!empty($_POST['user_password']) && $_POST['user_password'] !== 'xxxxxxxxxx'){
-            $userPassword = md5($_POST['user_password']);
+            $userPassword = password_hash($_POST['user_password'],PASSWORD_DEFAULT);
             $query= "update tbl_users set user_name='".$userName."', user_password='".$userPassword."',email='".$userEmail."' where id_user='".$userId."'";
         }else{
             $query= "update tbl_users set user_name='".$userName."', email='".$userEmail."' where id_user='".$userId."'";
@@ -33,7 +31,7 @@
             echo 'Please check ';
         }
     }
-    ?>
+?>
 <div class="container">
     <form action="edit.php?id_user=<?php echo $userId ?>" method="post">
         <div class="form-group">
